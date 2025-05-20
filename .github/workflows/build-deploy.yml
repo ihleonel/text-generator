@@ -1,0 +1,13 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # Change to specific version
+    steps:
+      - name: Hello world
+        run: echo "Hello, world!"
