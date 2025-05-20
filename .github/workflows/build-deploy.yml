@@ -9,5 +9,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # Change to specific version
     steps:
-      - name: Hello world
-        run: echo "Hello, world!"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        run: ls -la
