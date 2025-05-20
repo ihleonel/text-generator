@@ -16,3 +16,11 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Docker image # Build the Docker image
+        run: docker build -t ${{ github.repository }}:latest .
+
+      - name: Push Docker image # Push the Docker image to the registry
+        run: docker push ${{ github.repository }}:latest
