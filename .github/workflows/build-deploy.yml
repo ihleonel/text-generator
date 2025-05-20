@@ -9,8 +9,12 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # Change to specific version
     steps:
-      - name: Checkout repository
+      - name: Checkout repository # Obtain the code from the repository
         uses: actions/checkout@v4
 
-      - name: Show current directory
-        run: pwd
+      - name: Login to GitHub Container Registry # Authenticate to the GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
