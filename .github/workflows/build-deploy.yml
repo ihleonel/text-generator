@@ -11,4 +11,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        run: ls -la
+
+      - name: Show current directory
+        run: pwd
