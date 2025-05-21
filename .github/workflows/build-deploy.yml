@@ -17,10 +17,10 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker Image # Build the Docker image
-        run: docker build -t ${{ github.repository }}:latest .
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest .
 
       - name: Push Docker Image # Push the Docker image to the registry
-        run: docker push ${{ github.repository }}:latest
+        run: docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
