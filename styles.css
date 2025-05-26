@@ -3,3 +3,72 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+body {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 10px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#text-output {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-top: 20px;
+  width: 80%;
+  max-width: 600px;
+  min-height: 100px;
+  border-radius: 5px;
+  white-space: pre-wrap; /* Preserve whitespace and newlines from <p> tags */
+  line-height: 1.6;
+}
+
+#text-output p {
+  margin-bottom: 1em; /* Add space between paragraphs */
+}
+
+#text-output p:last-child {
+  margin-bottom: 0; /* No margin for the last paragraph */
+}
+
+
+#copy-btn {
+  background-color: #28a745; /* Green color for copy button */
+}
+
+#copy-btn:hover {
+  background-color: #1e7e34;
+}
+
+/* Styles for copy button when it's initially hidden by JS,
+   though JS primarily controls its display.
+   This can prevent a flash if CSS loads before JS. */
+#copy-btn[style*="display: none"] {
+  /* No specific styles needed here if JS handles it,
+     but you could add opacity or other effects if desired */
+}
