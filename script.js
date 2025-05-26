@@ -1,0 +1,105 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const generateBtn = document.getElementById('generate-btn');
+  const copyBtn = document.getElementById('copy-btn');
+  const textOutput = document.getElementById('text-output');
+
+  // Initially hide the copy button
+  copyBtn.style.display = 'none';
+
+  // Lorem Ipsum generator function
+  function generateLoremIpsum(paragraphs = 3) {
+    const words = [
+      'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur',
+      'adipiscing', 'elit', 'curabitur', 'vel', 'hendrerit', 'libero',
+      'eleifend', 'blandit', 'nunc', 'ornare', 'odio', 'ut',
+      'orci', 'gravida', 'imperdiet', 'nullam', 'purus', 'lacinia',
+      'a', 'pretium', 'quis', 'congue', 'praesent', 'sagittis',
+      'laoreet', 'auctor', 'mauris', 'non', 'velit', 'eros',
+      'dictum', 'proin', 'accumsan', 'sapien', 'nec', 'massa',
+      'volutpat', 'venenatis', 'sed', 'eu', 'molestie', 'lacus',
+      'quisque', 'porttitor', 'ligula', 'dui', 'mollis', 'tempus',
+      'at', 'magna', 'vestibulum', 'turpis', 'ac', 'diam',
+      'tincidunt', 'id', 'condimentum', 'enim', 'sodales', 'in',
+      'hac', 'habitasse', 'platea', 'dictumst', 'aenean', 'neque',
+      'fusce', 'augue', 'leo', 'eget', 'semper', 'mattis',
+      'tortor', 'scelerisque', 'nulla', 'interdum', 'tellus', 'malesuada',
+      'rhoncus', 'porta', 'sem', 'aliquet', 'et', 'nam',
+      'suspendisse', 'potenti', 'vivamus', 'luctus', 'fringilla', 'erat',
+      'donec', 'justo', 'vehicula', 'ultricies', 'varius', 'ante',
+      'primis', 'faucibus', 'ultrices', 'posuere', 'cubilia', 'curae',
+      'etiam', 'cursus', 'aliquam', 'quam', 'dapibus', 'nisl',
+      'feugiat', 'egestas', 'class', 'aptent', 'taciti', 'sociosqu',
+      'ad', 'litora', 'torquent', 'per', 'conubia', 'nostra',
+      'inceptos', 'himenaeos', 'phasellus', 'nibh', 'pulvinar', 'vitae',
+      'urna', 'iaculis', 'lobortis', 'nisi', 'viverra', 'arcu',
+      'morbi', 'pellentesque', 'metus', 'commodo', 'ut', 'facilisis',
+      'felis', 'tristique', 'ullamcorper', 'placerat', 'aenean', 'convallis',
+      'sollicitudin', 'integer', 'rutrum', 'duis', 'est', 'etiam',
+      'bibendum', 'donec', 'pharetra', 'vulputate', 'maecenas', 'mi',
+      'fermentum', 'consequat', 'suscipit', 'aliquam', 'habitant', 'senectus',
+      'netus', 'fames', 'quisque', 'euismod', 'curabitur', 'lectus',
+      'elementum', 'tempor', 'risus', 'cras'
+    ];
+    let text = '';
+    for (let p = 0; p < paragraphs; p++) {
+      let paragraph = '';
+      const numSentences = Math.floor(Math.random() * 3) + 3; // 3-5 sentences per paragraph
+      for (let i = 0; i < numSentences; i++) {
+        const numWords = Math.floor(Math.random() * 10) + 5; // 5-14 words per sentence
+        let sentence = '';
+        for (let j = 0; j < numWords; j++) {
+          sentence += words[Math.floor(Math.random() * words.length)] + ' ';
+        }
+        sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1).trim() + '. ';
+        paragraph += sentence;
+      }
+      text += '<p>' + paragraph.trim() + '</p>';
+    }
+    return text;
+  }
+
+  // Event listener for the generate button
+  generateBtn.addEventListener('click', () => {
+    textOutput.innerHTML = generateLoremIpsum();
+    copyBtn.style.display = 'inline-block'; // Show copy button
+    copyBtn.textContent = 'Copy Text'; // Reset copy button text
+  });
+
+  // Event listener for the copy button
+  copyBtn.addEventListener('click', () => {
+    const textToCopy = textOutput.textContent; // Use textContent to get raw text without HTML tags
+    if (navigator.clipboard && textToCopy) {
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          copyBtn.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtn.textContent = 'Copy Text';
+          }, 2000); // Reset text after 2 seconds
+        })
+        .catch(err => {
+          console.error('Failed to copy text: ', err);
+          // Fallback for older browsers or if clipboard API fails
+          try {
+            const textArea = document.createElement('textarea');
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            copyBtn.textContent = 'Copied! (fallback)';
+             setTimeout(() => {
+              copyBtn.textContent = 'Copy Text';
+            }, 2000);
+          } catch (fallbackErr) {
+            alert('Failed to copy text. Please copy manually.');
+            console.error('Fallback copy failed: ', fallbackErr);
+          }
+        });
+    } else if (!textToCopy) {
+        alert('Nothing to copy!');
+    } else {
+        alert('Clipboard API not available. Please copy manually.');
+    }
+  });
+});
