@@ -4,18 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Text Generator</title>
-  <link rel="stylesheet" href="styles.css">
+  <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <div class="header-container">
-    <button id="theme-switcher-btn">
-      <span id="theme-switcher-knob"></span>
-    </button>
+  <div class="container mt-5">
+    <div class="header-container d-flex justify-content-end p-3">
+      <button id="theme-switcher-btn" class="btn btn-secondary">
+        <span id="theme-switcher-knob"></span>
+      </button>
+    </div>
+    <h1 class="display-4 text-center">Text Generator</h1>
+    <button id="generate-btn" class="btn btn-primary mb-3 w-100">Generate Text</button>
+    <div class="card">
+      <div id="text-output" class="card-body" style="min-height: 100px;"></div>
+    </div>
+    <button id="copy-btn" class="btn btn-success mt-3 w-100">Copy Text</button>
   </div>
-  <h1>Text Generator</h1>
-  <button id="generate-btn">Generate Text</button>
-  <div id="text-output"></div>
-  <button id="copy-btn">Copy Text</button>
+  <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

@@ -108,19 +108,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeSwitcherKnob = document.getElementById('theme-switcher-knob'); // Added
 
   // Set initial theme and icon
-  document.body.dataset.theme = 'light'; 
+  document.documentElement.setAttribute('data-bs-theme', 'light');
   if (themeSwitcherKnob) {
     themeSwitcherKnob.textContent = '🌙'; // Moon icon for light theme
-  } else {
-    // console.warn("Theme switcher knob not found for icon setting!");
   }
 
   themeSwitcherBtn.addEventListener('click', () => {
-    if (document.body.dataset.theme === 'dark') {
-      document.body.dataset.theme = 'light';
+    const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+    if (currentTheme === 'dark') {
+      document.documentElement.setAttribute('data-bs-theme', 'light');
       if (themeSwitcherKnob) themeSwitcherKnob.textContent = '🌙';
     } else {
-      document.body.dataset.theme = 'dark';
+      document.documentElement.setAttribute('data-bs-theme', 'dark');
       if (themeSwitcherKnob) themeSwitcherKnob.textContent = '☀️';
     }
   });
