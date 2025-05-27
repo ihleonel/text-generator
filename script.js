@@ -102,4 +102,23 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Clipboard API not available. Please copy manually.');
     }
   });
+
+  // Theme switcher functionality
+  const themeSwitcherBtn = document.getElementById('theme-switcher-btn');
+
+  // Set initial theme and button text
+  // CSS defaults to light theme if data-theme is not present or is 'light'.
+  // We'll explicitly set it for clarity and to manage button text.
+  document.body.dataset.theme = 'light';
+  themeSwitcherBtn.textContent = 'Switch to Dark Theme';
+
+  themeSwitcherBtn.addEventListener('click', () => {
+    if (document.body.dataset.theme === 'dark') {
+      document.body.dataset.theme = 'light';
+      themeSwitcherBtn.textContent = 'Switch to Dark Theme';
+    } else {
+      document.body.dataset.theme = 'dark';
+      themeSwitcherBtn.textContent = 'Switch to Light Theme';
+    }
+  });
 });
