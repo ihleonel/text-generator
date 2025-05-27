@@ -105,20 +105,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Theme switcher functionality
   const themeSwitcherBtn = document.getElementById('theme-switcher-btn');
+  const themeSwitcherKnob = document.getElementById('theme-switcher-knob'); // Added
 
-  // Set initial theme and button text
-  // CSS defaults to light theme if data-theme is not present or is 'light'.
-  // We'll explicitly set it for clarity and to manage button text.
-  document.body.dataset.theme = 'light';
-  themeSwitcherBtn.textContent = 'Switch to Dark Theme';
+  // Set initial theme and icon
+  document.body.dataset.theme = 'light'; 
+  if (themeSwitcherKnob) {
+    themeSwitcherKnob.textContent = '🌙'; // Moon icon for light theme
+  } else {
+    // console.warn("Theme switcher knob not found for icon setting!");
+  }
 
   themeSwitcherBtn.addEventListener('click', () => {
     if (document.body.dataset.theme === 'dark') {
       document.body.dataset.theme = 'light';
-      themeSwitcherBtn.textContent = 'Switch to Dark Theme';
+      if (themeSwitcherKnob) themeSwitcherKnob.textContent = '🌙';
     } else {
       document.body.dataset.theme = 'dark';
-      themeSwitcherBtn.textContent = 'Switch to Light Theme';
+      if (themeSwitcherKnob) themeSwitcherKnob.textContent = '☀️';
     }
   });
 });

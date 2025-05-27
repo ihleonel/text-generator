@@ -18,6 +18,8 @@ body {
   --text-output-text: #333;
   --theme-switcher-bg: #6c757d;
   --theme-switcher-hover-bg: #5a6268;
+  --theme-knob-bg: #ffffff;
+  --theme-knob-icon-color: #333333; /* Icon color for light theme (e.g., moon) */
 
   font-family: sans-serif;
   display: flex;
@@ -44,6 +46,8 @@ body[data-theme="dark"] {
   --text-output-text: #e0e0e0;
   --theme-switcher-bg: #495057;
   --theme-switcher-hover-bg: #343a40;
+  --theme-knob-bg: #e0e0e0; /* Knob color for dark theme */
+  --theme-knob-icon-color: #121212; /* Icon color for dark theme (e.g., sun) */
 }
 
 .header-container {
@@ -92,14 +96,44 @@ button:hover {
 
 #theme-switcher-btn {
   background-color: var(--theme-switcher-bg);
-  color: var(--button-text); /* Assuming same text color as other buttons */
-  /* Example of smaller padding if desired:
-  padding: 8px 12px;
-  font-size: 14px; */
+  border: none; /* Resetting border from generic button style if any */
+  width: 60px;
+  height: 30px;
+  border-radius: 15px; /* half of height for pill shape */
+  cursor: pointer;
+  position: relative; /* For positioning the knob */
+  padding: 0; /* Remove padding, it's not for text anymore */
+  margin: 10px 5px; /* Keep margin from general button style */
+  transition: background-color 0.3s ease;
+  /* Explicitly remove text color if it was set, or it might try to color the knob's text */
+  color: transparent; 
 }
 
 #theme-switcher-btn:hover {
   background-color: var(--theme-switcher-hover-bg);
+}
+
+/* Styles for the knob (assuming inner span with id #theme-switcher-knob) */
+#theme-switcher-knob {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 2px; /* Small offset from top of track */
+  left: 2px; /* Small offset from left of track */
+  width: 26px;  /* Slightly smaller than track height */
+  height: 26px; /* Slightly smaller than track height */
+  background-color: var(--theme-knob-bg);
+  border-radius: 50%; /* Makes it circular */
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease, color 0.3s ease;
+  font-size: 16px; /* Adjust for icon size (e.g., ☀️, 🌙) */
+  color: var(--theme-knob-icon-color);
+  box-shadow: 0 0 2px rgba(0,0,0,0.3); /* Optional shadow for knob */
+}
+
+/* When in dark mode, move the knob to the right */
+body[data-theme="dark"] #theme-switcher-knob {
+  transform: translateX(30px); /* (track width - knob width - offset*2) = 60 - 26 - 4 = 30px */
 }
 
 #text-output {
