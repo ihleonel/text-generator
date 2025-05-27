@@ -5,70 +5,129 @@
 }
 
 body {
+  --page-bg: #f4f4f4;
+  --text-color: #333;
+  --heading-color: #333;
+  --button-bg: #007bff;
+  --button-text: #ffffff;
+  --button-hover-bg: #0056b3;
+  --copy-button-bg: #28a745;
+  --copy-button-hover-bg: #1e7e34;
+  --text-output-bg: #fff;
+  --text-output-border: #ddd;
+  --text-output-text: #333;
+  --theme-switcher-bg: #6c757d;
+  --theme-switcher-hover-bg: #5a6268;
+
   font-family: sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #f4f4f4;
-  color: #333;
+  padding-top: 70px; /* Added padding to avoid overlap with header */
+  background-color: var(--page-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body[data-theme="dark"] {
+  --page-bg: #121212;
+  --text-color: #e0e0e0;
+  --heading-color: #e0e0e0;
+  --button-bg: #0056b3;
+  --button-text: #ffffff;
+  --button-hover-bg: #004085;
+  --copy-button-bg: #1e7e34;
+  --copy-button-hover-bg: #155d27;
+  --text-output-bg: #1e1e1e;
+  --text-output-border: #444444;
+  --text-output-text: #e0e0e0;
+  --theme-switcher-bg: #495057;
+  --theme-switcher-hover-bg: #343a40;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 h1 {
   margin-bottom: 20px;
-  color: #333;
+  color: var(--heading-color);
+  transition: color 0.3s ease;
 }
 
 button {
-  background-color: #007bff;
-  color: white;
+  background-color: var(--button-bg);
+  color: var(--button-text);
   border: none;
   padding: 10px 15px;
   margin: 10px 5px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: var(--button-hover-bg);
+}
+
+#generate-btn {
+  /* Inherits general button styles, specific overrides can be placed here if needed */
+}
+
+#copy-btn {
+  background-color: var(--copy-button-bg);
+}
+
+#copy-btn:hover {
+  background-color: var(--copy-button-hover-bg);
+}
+
+#theme-switcher-btn {
+  background-color: var(--theme-switcher-bg);
+  color: var(--button-text); /* Assuming same text color as other buttons */
+  /* Example of smaller padding if desired:
+  padding: 8px 12px;
+  font-size: 14px; */
+}
+
+#theme-switcher-btn:hover {
+  background-color: var(--theme-switcher-hover-bg);
 }
 
 #text-output {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: var(--text-output-bg);
+  border: 1px solid var(--text-output-border);
+  color: var(--text-output-text);
   padding: 15px;
   margin-top: 20px;
   width: 80%;
   max-width: 600px;
   min-height: 100px;
   border-radius: 5px;
-  white-space: pre-wrap; /* Preserve whitespace and newlines from <p> tags */
+  white-space: pre-wrap;
   line-height: 1.6;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 #text-output p {
-  margin-bottom: 1em; /* Add space between paragraphs */
+  margin-bottom: 1em;
 }
 
 #text-output p:last-child {
-  margin-bottom: 0; /* No margin for the last paragraph */
-}
-
-
-#copy-btn {
-  background-color: #28a745; /* Green color for copy button */
-}
-
-#copy-btn:hover {
-  background-color: #1e7e34;
+  margin-bottom: 0;
 }
 
 /* Styles for copy button when it's initially hidden by JS,
    though JS primarily controls its display.
    This can prevent a flash if CSS loads before JS. */
 #copy-btn[style*="display: none"] {
-  /* No specific styles needed here if JS handles it,
-     but you could add opacity or other effects if desired */
+  /* No specific styles needed here if JS handles it */
 }
