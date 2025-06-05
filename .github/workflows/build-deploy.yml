@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker Image # Build the Docker image
-        run: docker build -t ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest .
+        run: docker build -t ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest -f docker/develop/Dockerfile .
 
       - name: Push Docker Image # Push the Docker image to the registry
         run: docker push ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:latest
