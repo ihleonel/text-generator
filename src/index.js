@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
       'netus', 'fames', 'quisque', 'euismod', 'curabitur', 'lectus',
       'elementum', 'tempor', 'risus', 'cras'
     ];
+    const numberOfWords = document.getElementById('number-of-words').value;
+
     let text = '';
     for (let p = 0; p < paragraphs; p++) {
       let paragraph = '';
