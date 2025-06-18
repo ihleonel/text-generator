@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   copyBtn.style.display = 'none';
 
   // Lorem Ipsum generator function
-  function generateLoremIpsum(paragraphs = 3) {
+  function generateLoremIpsum() {
     const words = [
       'lorem', 'ipsum', 'dolor', 'sit', 'amet', 'consectetur',
       'adipiscing', 'elit', 'curabitur', 'vel', 'hendrerit', 'libero',
@@ -43,21 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const numberOfWords = document.getElementById('number-of-words').value;
 
     let text = '';
-    for (let p = 0; p < paragraphs; p++) {
-      let paragraph = '';
-      const numSentences = Math.floor(Math.random() * 3) + 3; // 3-5 sentences per paragraph
-      for (let i = 0; i < numSentences; i++) {
-        const numWords = Math.floor(Math.random() * 10) + 5; // 5-14 words per sentence
-        let sentence = '';
-        for (let j = 0; j < numWords; j++) {
-          sentence += words[Math.floor(Math.random() * words.length)] + ' ';
-        }
-        sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1).trim() + '. ';
-        paragraph += sentence;
-      }
-      text += '<p>' + paragraph.trim() + '</p>';
+    for (let j = 0; j < numberOfWords; j++) {
+      text += words[Math.floor(Math.random() * words.length)] + ' ';
     }
-    return text;
+
+    return `<p>${text}</p>`
   }
 
   // Event listener for the generate button
