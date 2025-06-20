@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const generateBtn = document.getElementById('generate-btn');
+  const clearBtn = document.getElementById('clear-btn');
   const copyBtn = document.getElementById('copy-btn');
   const textOutput = document.getElementById('text-output');
 
@@ -55,6 +56,10 @@ document.addEventListener('DOMContentLoaded', () => {
     textOutput.innerHTML = generateLoremIpsum();
     copyBtn.style.display = 'inline-block'; // Show copy button
     copyBtn.textContent = 'Copy Text'; // Reset copy button text
+  });
+
+  clearBtn.addEventListener('click', () => {
+    textOutput.innerHTML = '';
   });
 
   // Event listener for the copy button
